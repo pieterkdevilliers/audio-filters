@@ -107,7 +107,7 @@ Checks result type to determine the scale value of the result ex: Ohm, kOhm or m
         resultScale = "kΩ";
     } else if (finalResistance > 999999) {
         convertedResistance = (finalResistance / 1000000).toFixed(2);
-        resultScale = "mΩ"
+        resultScale = "mΩ";
     } else {
         convertedResistance = (finalResistance / 1).toFixed(2);
         resultScale = "Ω";
@@ -243,19 +243,19 @@ function compareMilliArray(item) {
 function capacitanceScaleCalculation () {
     if (resultTypePico) {
         convertedCapacitance = (finalCapacitance * 1000000000000).toFixed(2);
-        resultScale = "pF"
+        resultScale = "pF";
     } else if (resultTypeNano) {
         convertedCapacitance = (finalCapacitance * 1000000000).toFixed(2);
-        resultScale = "nF"
+        resultScale = "nF";
     } else if (resultTypeMicro) {
         convertedCapacitance = (finalCapacitance * 1000000).toFixed(2);
-        resultScale = "μF"
+        resultScale = "μF";
     } else if (resultTypeMilli) {
         convertedCapacitance = (finalCapacitance * 1000).toFixed(2);
-        resultScale = "mF"
+        resultScale = "mF";
     } else {
         convertedCapacitance = (finalCapacitance * 1).toFixed(2);
-        resultScale = "F"
+        resultScale = "F";
     }
     deliverCapacitanceValue(convertedCapacitance, resultScale);
 }
@@ -274,7 +274,7 @@ if (finalFrequency > 999 && finalFrequency < 999999) {
     resultScale = "kHz";
 } else if (finalFrequency > 999999) {
     convertedFrequency = (finalFrequency / 1000000).toFixed(2);
-    resultScale = "mHz"
+    resultScale = "mHz";
 } else {
     convertedFrequency = (finalFrequency / 1).toFixed(2);
     resultScale = "Hz";
