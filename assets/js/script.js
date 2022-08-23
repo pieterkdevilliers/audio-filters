@@ -20,15 +20,15 @@ function receiveValues() {
 
     let scaledResistance = parseFloat(
         calculateScaledResistance(resistanceValue, resistanceScale)
-        );
+    );
     let scaledCapacitance = parseFloat(
         calculateScaledCapacitance(capacitanceValue, capacitanceScale)
-        );
+    );
     let scaledFrequency = parseFloat(
         calculateScaledFrequency(frequencyValue, frequencyScale)
-        );
+    );
 
-        if (resistanceValue === "0" && capacitanceValue !== "0" && frequencyValue !== "0") {
+    if (resistanceValue === "0" && capacitanceValue !== "0" && frequencyValue !== "0") {
         calculateFinalResistance(scaledCapacitance, scaledFrequency);
     } else if (resistanceValue !== "0" && capacitanceValue === "0" && frequencyValue !== "0") {
         calculateFinalCapacitance(scaledFrequency, scaledResistance);
@@ -44,7 +44,7 @@ function receiveValues() {
  */
 function calculateScaledResistance(resistanceValue, resistanceScale) {
     if (resistanceScale === "kohm") {
-        let scaledResistance  = resistanceValue * 1000;
+        let scaledResistance = resistanceValue * 1000;
         return scaledResistance;
     } else if (resistanceScale === "mohm") {
         let scaledResistance = resistanceValue * 1000000;
@@ -97,11 +97,11 @@ function calculateScaledFrequency(frequencyValue, frequencyScale) {
  * Takes the scaled values and calculates the final resistance value
  */
 
-function calculateFinalResistance (scaledCapacitance, scaledFrequency) {
+function calculateFinalResistance(scaledCapacitance, scaledFrequency) {
     let finalResistance = (1 / ((2 * Math.PI) * scaledFrequency * scaledCapacitance)).toFixed(2);
-/*
-Checks result type to determine the scale value of the result ex: Ohm, kOhm or mOhm.
-*/
+    /*
+    Checks result type to determine the scale value of the result ex: Ohm, kOhm or mOhm.
+    */
     if (finalResistance > 999 && finalResistance < 999999) {
         convertedResistance = (finalResistance / 1000).toFixed(2);
         resultScale = "kΩ";
@@ -119,11 +119,11 @@ Checks result type to determine the scale value of the result ex: Ohm, kOhm or m
 /**
  * Takes the scaled values and calculates the final capacitance value
  */
- function calculateFinalCapacitance (scaledFrequency, scaledResistance) {
+function calculateFinalCapacitance(scaledFrequency, scaledResistance) {
     finalCapacitance = 1 / ((2 * Math.PI) * scaledResistance * scaledFrequency);
-/*
-Checks result type to determine the scale value of the result ex: pico, nano, micro etc...
-*/ 
+    /*
+    Checks result type to determine the scale value of the result ex: pico, nano, micro etc...
+    */
     resultString = finalCapacitance.toString();
 
     picoValues = [
@@ -240,7 +240,7 @@ function compareMilliArray(item) {
 }
 
 /** If Else statements for correctly identifying the final capacitance value and unit */
-function capacitanceScaleCalculation () {
+function capacitanceScaleCalculation() {
     if (resultTypePico) {
         convertedCapacitance = (finalCapacitance * 1000000000000).toFixed(2);
         resultScale = "pF";
@@ -263,30 +263,30 @@ function capacitanceScaleCalculation () {
 /**
  * Takes the scaled values and calculates the final frequency value
  */
- function calculateFinalFrequency (scaledCapacitance, scaledResistance) {
+function calculateFinalFrequency(scaledCapacitance, scaledResistance) {
     let finalFrequency = (1 / ((2 * Math.PI) * scaledResistance * scaledCapacitance)).toFixed(2);
 
-/*
-Checks result type to determine the scale value of the result ex: Ohm, kOhm or mOhm.
-*/
-if (finalFrequency > 999 && finalFrequency < 999999) {
-    convertedFrequency = (finalFrequency / 1000).toFixed(2);
-    resultScale = "kHz";
-} else if (finalFrequency > 999999) {
-    convertedFrequency = (finalFrequency / 1000000).toFixed(2);
-    resultScale = "mHz";
-} else {
-    convertedFrequency = (finalFrequency / 1).toFixed(2);
-    resultScale = "Hz";
-}
+    /*
+    Checks result type to determine the scale value of the result ex: Ohm, kOhm or mOhm.
+    */
+    if (finalFrequency > 999 && finalFrequency < 999999) {
+        convertedFrequency = (finalFrequency / 1000).toFixed(2);
+        resultScale = "kHz";
+    } else if (finalFrequency > 999999) {
+        convertedFrequency = (finalFrequency / 1000000).toFixed(2);
+        resultScale = "mHz";
+    } else {
+        convertedFrequency = (finalFrequency / 1).toFixed(2);
+        resultScale = "Hz";
+    }
 
-deliverFrequencyValue(convertedFrequency, resultScale);
+    deliverFrequencyValue(convertedFrequency, resultScale);
 }
 
 /**
  * Resets all values to 0 after returning the result
  */
-function resetValues () {
+function resetValues() {
     document.getElementById("resistance-value").value = "0";
     document.getElementById("capacitance-value").value = "0";
     document.getElementById("cut-off-frequency").value = "0";
@@ -297,7 +297,7 @@ function resetValues () {
  * Deliver Resistance Value On-Screen 
  */
 
-function deliverResistanceValue () {
+function deliverResistanceValue() {
     document.getElementById("answer").innerText = `Result: ${convertedResistance}${resultScale} `;
     resetValues();
 }
@@ -306,7 +306,7 @@ function deliverResistanceValue () {
  * Deliver Capacitance Value On-Screen 
  */
 
- function deliverCapacitanceValue () {
+function deliverCapacitanceValue() {
     document.getElementById("answer").innerText = `Result: ${convertedCapacitance}${resultScale} `;
     resetValues();
 }
@@ -315,7 +315,7 @@ function deliverResistanceValue () {
  * Deliver Frequency Value On-Screen 
  */
 
- function deliverFrequencyValue () {
+function deliverFrequencyValue() {
     document.getElementById("answer").innerText = `Result: ${convertedFrequency}${resultScale} `;
     resetValues();
 }
@@ -324,6 +324,6 @@ function deliverResistanceValue () {
  * Deliver The ALert Message On-Screen 
  */
 
- function deliverAlertMessage () {
+function deliverAlertMessage() {
     document.getElementById("alert").innerText = "Please complete two values in order to calculate the third";
 }
