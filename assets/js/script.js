@@ -141,6 +141,14 @@ Checks result type to determine the scale value of the result ex: pico, nano, mi
     let resultString = finalCapacitance.toString();
 
     let picoValues = [
+        "e-20",
+        "e-19",
+        "e-18",
+        "e-17",
+        "e-16",
+        "e-15",
+        "e-14",
+        "e-13",
         "e-12",
         "e-11",
         "e-10"
