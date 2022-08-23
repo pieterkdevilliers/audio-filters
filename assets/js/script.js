@@ -214,34 +214,6 @@ function compareType(item) {
     }
 }
 
-/** Compares the result string to the items in the array - picoValues. If resultTypePico is true, the the function capacitanceScaleCalculation is called */
-function comparePicoArray(item) {
-    if (this.includes(item)) {
-        capacitanceScaleCalculation(PICO_TYPE);
-    }
-}
-
-/** Compares the result string to the items in the array - nanoValues. If resultTypeNano is true, the the function capacitanceScaleCalculation is called */
-function compareNanoArray(item) {
-    if (this.includes(item)) {
-        capacitanceScaleCalculation(NANO_TYPE);
-    }
-}
-
-/** Compares the result string to the items in the array - microValues. If resultTypeMicro is true, the the function capacitanceScaleCalculation is called */
-function compareMicroArray(item) {
-    if (this.includes(item)) {
-        capacitanceScaleCalculation(MICRO_TYPE);
-    }
-}
-
-/** Compares the result string to the items in the array - milliValues. If resultTypeMilli is true, the the function capacitanceScaleCalculation is called */
-function compareMilliArray(item) {
-    if (this.includes(item)) {
-        capacitanceScaleCalculation(MILLI_TYPE);
-    }
-}
-
 /** If Else statements for correctly identifying the final capacitance value and unit */
 function capacitanceScaleCalculation(type) {
     let convertedCapacitance = 0.00;
