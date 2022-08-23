@@ -129,21 +129,21 @@ function calculateFinalCapacitance(scaledFrequency, scaledResistance) {
     /*
     Checks result type to determine the scale value of the result ex: pico, nano, micro etc...
     */
-    resultString = finalCapacitance.toString();
+    let resultString = finalCapacitance.toString();
 
     picoValues = [
         "e-12",
         "e-11",
         "e-10"
     ];
-    picoValues.forEach(comparePicoArray);
+    picoValues.forEach(compareType, { resultString: resultString, faradScale: PICO_TYPE });
 
     nanoValues = [
         "e-9",
         "e-8",
         "e-7"
     ];
-    nanoValues.forEach(compareNanoArray);
+    nanoValues.forEach(compareType, { resultString: resultString, faradScale: NANO_TYPE });
 
     microValues = [
         "0.000001",
@@ -174,7 +174,7 @@ function calculateFinalCapacitance(scaledFrequency, scaledResistance) {
         "0.0008",
         "0.0009"
     ];
-    microValues.forEach(compareMicroArray);
+    microValues.forEach(compareType, { resultString: resultString, faradScale: MICRO_TYPE });
 
     milliValues = [
         "0.001",
@@ -205,57 +205,57 @@ function calculateFinalCapacitance(scaledFrequency, scaledResistance) {
         "0.8",
         "0.9"
     ];
-    milliValues.forEach(compareMilliArray);
+    milliValues.forEach(compareType, { resultString: resultString, faradScale: MILLI_TYPE });
+}
+
+function compareType(item) {
+    if (this.resultString.includes(item)) {
+        capacitanceScaleCalculation(this.faradScale);
+    }
 }
 
 /** Compares the result string to the items in the array - picoValues. If resultTypePico is true, the the function capacitanceScaleCalculation is called */
 function comparePicoArray(item) {
-    resultTypePico = resultString.includes(item);
-
-    if (resultTypePico) {
-        capacitanceScaleCalculation(resultString);
+    if (this.includes(item)) {
+        capacitanceScaleCalculation(PICO_TYPE);
     }
 }
 
 /** Compares the result string to the items in the array - nanoValues. If resultTypeNano is true, the the function capacitanceScaleCalculation is called */
 function compareNanoArray(item) {
-    resultTypeNano = resultString.includes(item);
-
-    if (resultTypeNano) {
-        capacitanceScaleCalculation(resultString);
+    if (this.includes(item)) {
+        capacitanceScaleCalculation(NANO_TYPE);
     }
 }
 
 /** Compares the result string to the items in the array - microValues. If resultTypeMicro is true, the the function capacitanceScaleCalculation is called */
 function compareMicroArray(item) {
-    resultTypeMicro = resultString.includes(item);
-
-    if (resultTypeMicro) {
-        capacitanceScaleCalculation(resultString);
+    if (this.includes(item)) {
+        capacitanceScaleCalculation(MICRO_TYPE);
     }
 }
 
 /** Compares the result string to the items in the array - milliValues. If resultTypeMilli is true, the the function capacitanceScaleCalculation is called */
 function compareMilliArray(item) {
-    resultTypeMilli = resultString.includes(item);
-
-    if (resultTypeMilli) {
-        capacitanceScaleCalculation(resultString);
+    if (this.includes(item)) {
+        capacitanceScaleCalculation(MILLI_TYPE);
     }
 }
 
 /** If Else statements for correctly identifying the final capacitance value and unit */
-function capacitanceScaleCalculation() {
-    if (resultTypePico) {
+function capacitanceScaleCalculation(type) {
+    let convertedCapacitance = 0.00;
+    let resultScale = "";
+    if (type === PICO_TYPE) {
         convertedCapacitance = (finalCapacitance * 1000000000000).toFixed(2);
         resultScale = "pF";
-    } else if (resultTypeNano) {
+    } else if (type === NANO_TYPE) {
         convertedCapacitance = (finalCapacitance * 1000000000).toFixed(2);
         resultScale = "nF";
-    } else if (resultTypeMicro) {
+    } else if (type === MICRO_TYPE) {
         convertedCapacitance = (finalCapacitance * 1000000).toFixed(2);
         resultScale = "μF";
-    } else if (resultTypeMilli) {
+    } else if (type === MILLI_TYPE) {
         convertedCapacitance = (finalCapacitance * 1000).toFixed(2);
         resultScale = "mF";
     } else {
@@ -270,6 +270,8 @@ function capacitanceScaleCalculation() {
  */
 function calculateFinalFrequency(scaledCapacitance, scaledResistance) {
     let finalFrequency = (1 / ((2 * Math.PI) * scaledResistance * scaledCapacitance)).toFixed(2);
+    let convertedFrequency = 0.00;
+    let resultScale = "";
 
     /*
     Checks result type to determine the scale value of the result ex: Ohm, kOhm or mOhm.
@@ -302,7 +304,7 @@ function resetValues() {
  * Deliver Resistance Value On-Screen 
  */
 
-function deliverResistanceValue() {
+function deliverResistanceValue(convertedResistance, resultScale) {
     document.getElementById("answer").innerText = `Result: ${convertedResistance}${resultScale} `;
     resetValues();
 }
@@ -311,7 +313,7 @@ function deliverResistanceValue() {
  * Deliver Capacitance Value On-Screen 
  */
 
-function deliverCapacitanceValue() {
+function deliverCapacitanceValue(convertedCapacitance, resultScale) {
     document.getElementById("answer").innerText = `Result: ${convertedCapacitance}${resultScale} `;
     resetValues();
 }
@@ -320,13 +322,13 @@ function deliverCapacitanceValue() {
  * Deliver Frequency Value On-Screen 
  */
 
-function deliverFrequencyValue() {
+function deliverFrequencyValue(convertedFrequency, resultScale) {
     document.getElementById("answer").innerText = `Result: ${convertedFrequency}${resultScale} `;
     resetValues();
 }
 
 /**
- * Deliver The ALert Message On-Screen 
+ * Deliver The Alert Message On-Screen 
  */
 
 function deliverAlertMessage() {
