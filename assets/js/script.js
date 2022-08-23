@@ -43,14 +43,16 @@ function receiveValues() {
  * Takes the values provided to receiveValues and calculates the scaled resistanceValue
  */
 function calculateScaledResistance(resistanceValue, resistanceScale) {
+    let scaledResistance = "";
+
     if (resistanceScale === "kohm") {
-        let scaledResistance = resistanceValue * 1000;
+        scaledResistance = resistanceValue * 1000;
         return scaledResistance;
     } else if (resistanceScale === "mohm") {
-        let scaledResistance = resistanceValue * 1000000;
+        scaledResistance = resistanceValue * 1000000;
         return scaledResistance;
     } else {
-        let scaledResistance = resistanceValue;
+        scaledResistance = resistanceValue;
         return scaledResistance;
     }
 }
@@ -59,20 +61,22 @@ function calculateScaledResistance(resistanceValue, resistanceScale) {
  * Takes the values provided to receiveValues and calculates the scaled apacitanceValue
  */
 function calculateScaledCapacitance(capacitanceValue, capacitanceScale) {
+    let scaledCapacitance = "";
+
     if (capacitanceScale === "mF") {
-        let scaledCapacitance = capacitanceValue / 1000;
+        scaledCapacitance = capacitanceValue / 1000;
         return scaledCapacitance;
     } else if (capacitanceScale === "uF") {
-        let scaledCapacitance = capacitanceValue / 1000000;
+        scaledCapacitance = capacitanceValue / 1000000;
         return scaledCapacitance;
     } else if (capacitanceScale === "nF") {
-        let scaledCapacitance = capacitanceValue / 1000000000;
+        scaledCapacitance = capacitanceValue / 1000000000;
         return scaledCapacitance;
     } else if (capacitanceScale === "pF") {
-        let scaledCapacitance = capacitanceValue / 1000000000000;
+        scaledCapacitance = capacitanceValue / 1000000000000;
         return scaledCapacitance;
     } else {
-        let scaledCapacitance = capacitanceValue;
+        scaledCapacitance = capacitanceValue;
         return scaledCapacitance;
     }
 }
@@ -81,14 +85,16 @@ function calculateScaledCapacitance(capacitanceValue, capacitanceScale) {
  * Takes the values provided to receiveValues and calculates the scaled frequencyValue
  */
 function calculateScaledFrequency(frequencyValue, frequencyScale) {
+    let scaledFrequency = "";
+
     if (frequencyScale === "kHz") {
-        let scaledFrequency = frequencyValue * 1000;
+        scaledFrequency = frequencyValue * 1000;
         return scaledFrequency;
     } else if (frequencyScale === "mHz") {
-        let scaledFrequency = frequencyValue * 1000000;
+        scaledFrequency = frequencyValue * 1000000;
         return scaledFrequency;
     } else {
-        let scaledFrequency = frequencyValue;
+        scaledFrequency = frequencyValue;
         return scaledFrequency;
     }
 }
@@ -99,6 +105,8 @@ function calculateScaledFrequency(frequencyValue, frequencyScale) {
 
 function calculateFinalResistance(scaledCapacitance, scaledFrequency) {
     let finalResistance = (1 / ((2 * Math.PI) * scaledFrequency * scaledCapacitance)).toFixed(2);
+    let convertedResistance = "";
+    let resultScale = "";
     /*
     Checks result type to determine the scale value of the result ex: Ohm, kOhm or mOhm.
     */
@@ -126,26 +134,27 @@ const MILLI_TYPE = "MILLI_TYPE";
  */
 function calculateFinalCapacitance(scaledFrequency, scaledResistance) {
     finalCapacitance = 1 / ((2 * Math.PI) * scaledResistance * scaledFrequency);
-    /*
-    Checks result type to determine the scale value of the result ex: pico, nano, micro etc...
-    */
+
+/*
+Checks result type to determine the scale value of the result ex: pico, nano, micro etc...
+*/
     let resultString = finalCapacitance.toString();
 
-    picoValues = [
+    let picoValues = [
         "e-12",
         "e-11",
         "e-10"
     ];
-    picoValues.forEach(compareType, { resultString: resultString, faradScale: PICO_TYPE });
+    picoValues.forEach(compareType, { faradScale: PICO_TYPE, resultString: resultString });
 
-    nanoValues = [
+    let nanoValues = [
         "e-9",
         "e-8",
         "e-7"
     ];
-    nanoValues.forEach(compareType, { resultString: resultString, faradScale: NANO_TYPE });
+    nanoValues.forEach(compareType, { faradScale: NANO_TYPE, resultString: resultString});
 
-    microValues = [
+    let microValues = [
         "0.000001",
         "0.000002",
         "0.000003",
@@ -174,9 +183,9 @@ function calculateFinalCapacitance(scaledFrequency, scaledResistance) {
         "0.0008",
         "0.0009"
     ];
-    microValues.forEach(compareType, { resultString: resultString, faradScale: MICRO_TYPE });
+    microValues.forEach(compareType, { faradScale: MICRO_TYPE, resultString: resultString});
 
-    milliValues = [
+    let milliValues = [
         "0.001",
         "0.002",
         "0.003",
@@ -205,7 +214,7 @@ function calculateFinalCapacitance(scaledFrequency, scaledResistance) {
         "0.8",
         "0.9"
     ];
-    milliValues.forEach(compareType, { resultString: resultString, faradScale: MILLI_TYPE });
+    milliValues.forEach(compareType, { faradScale: MILLI_TYPE, resultString: resultString});
 }
 
 function compareType(item) {
@@ -273,7 +282,7 @@ function resetValues() {
 }
 
 /**
- * Deliver Resistance Value On-Screen 
+ * Deliver Resistance Value On-Screen
  */
 
 function deliverResistanceValue(convertedResistance, resultScale) {
@@ -282,7 +291,7 @@ function deliverResistanceValue(convertedResistance, resultScale) {
 }
 
 /**
- * Deliver Capacitance Value On-Screen 
+ * Deliver Capacitance Value On-Screen
  */
 
 function deliverCapacitanceValue(convertedCapacitance, resultScale) {
@@ -291,7 +300,7 @@ function deliverCapacitanceValue(convertedCapacitance, resultScale) {
 }
 
 /**
- * Deliver Frequency Value On-Screen 
+ * Deliver Frequency Value On-Screen
  */
 
 function deliverFrequencyValue(convertedFrequency, resultScale) {
@@ -300,7 +309,7 @@ function deliverFrequencyValue(convertedFrequency, resultScale) {
 }
 
 /**
- * Deliver The Alert Message On-Screen 
+ * Deliver The Alert Message On-Screen
  */
 
 function deliverAlertMessage() {
