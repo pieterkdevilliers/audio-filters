@@ -116,6 +116,11 @@ function calculateFinalResistance(scaledCapacitance, scaledFrequency) {
     deliverResistanceValue(convertedResistance, resultScale);
 }
 
+const PICO_TYPE = "PICO_TYPE";
+const NANO_TYPE = "NANO_TYPE";
+const MICRO_TYPE = "MICRO_TYPE";
+const MILLI_TYPE = "MILLI_TYPE";
+
 /**
  * Takes the scaled values and calculates the final capacitance value
  */
