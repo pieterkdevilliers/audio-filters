@@ -11,6 +11,12 @@ This is a simple website allowing the user to calculate the component values for
 
 The user enters 2 out of the 3 required values, and the calculator will calculate the value of the third component.
 
+As an example:
+From the Low Pass Filter Calculator:
+1 - Set the Resistance Value to 300 and the Resistance Scale to mΩ (mega-ohm).
+2 - Set the Cutt-off Frequency to 50 and the Frequency Scale to Hz (hertz).
+3 - Click `Calculate` and the result is displayed as 10.61pF (picoFarad). This determines the value in picoFarad of the required Capacitor for the desired Cut-Off Frequency, based on the output impedance of the Amplifier.
+
 The goals of this website are:
 * Generate traffic in order to generate AdSense revenue.
 
@@ -32,10 +38,10 @@ The project help clients to:
 * Determine the component values or cut-off frequency for a set of known components.
 
 ### User stories: 
-1.	As a visitor, I am designing a Passive High Pass Filter to limit the minimum freqency signal being passed to the amplifier inputs of a hi-fi system. I know what the amplifier's input impedance is (300 mOhm), and know the desired cut-off frequency (50Hz). I can use the Passive High Pass Filter calculator to determine the Capacitance required (10.61pF) for the capacitor in the circuit, to achieve the desired cut-off frequency.
-2.	As a visitor, I am designing a Passive Low Pass Filter to limit the maximum freqency signal being passed to the sub-woofer inputs of a hi-fi system. I know what the sub-woofer's input impedance is (300 mOhm), and know the desired cut-off frequency (50Hz). I can use the Passive Low Pass Filter calculator to determine the Capacitance required (10.61pF) for the capacitor in the circuit, to achieve the desired cut-off frequency.
-3.	As a visitor, I am designing a Sub-woofer amplifier input circuit. I've completed the design and in testing want to calculate the actual cut-off frequency of the input-circuit. Based on the Capacitance and Input Impedance in the design, I can use the Passive Low Pass Filter calculator to determine the actual cut-off frequency of the design.
-4.	As a visitor, I am designing a Sub-woofer amplifier input circuit, with a Variable Resistor. I've completed the design and in testing want to calculate the actual reange of cut-off frequencies of the input-circuit. Baed on the Capacitance and Input Impedance, together with the range of the Variable Resistor in the design, I can use the Passive Low Pass Filter calculator to determine the actual cut-off frequency of the design.
+1.	As a visitor, I am designing a Passive High Pass Filter to limit the minimum freqency signal being passed to the amplifier inputs of a hi-fi system. I know what the amplifier's output impedance is (300 mOhm), and know the desired cut-off frequency (50Hz). I can use the Passive High Pass Filter calculator to determine the Capacitance required (10.61pF) for the capacitor in the circuit, to achieve the desired cut-off frequency.
+2.	As a visitor, I am designing a Passive Low Pass Filter to limit the maximum freqency signal being passed to the sub-woofer inputs of a hi-fi system. I know what the sub-woofer amplifier's output impedance is (300 mOhm), and know the desired cut-off frequency (50Hz). I can use the Passive Low Pass Filter calculator to determine the Capacitance required (10.61pF) for the capacitor in the circuit, to achieve the desired cut-off frequency.
+3.	As a visitor, I am designing a Sub-woofer amplifier input circuit. I've completed the design and in testing want to calculate the actual cut-off frequency of the input-circuit. Based on the Capacitance and Output Impedance in the design, I can use the Passive Low Pass Filter calculator to determine the actual cut-off frequency of the design.
+4.	As a visitor, I am designing a Sub-woofer amplifier input circuit, with a Variable Resistor. I've completed the design and in testing want to calculate the actual reange of cut-off frequencies of the input-circuit. Baed on the Capacitance and InOutputput Impedance, together with the range of the Variable Resistor in the design, I can use the Passive Low Pass Filter calculator to determine the actual cut-off frequency of the design.
 
 ### Scope
 To help the visitor achieve their circuit design goals, I included the following features in the website: 
