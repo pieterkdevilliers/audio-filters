@@ -177,9 +177,9 @@ Several warnings were generated in the JavaScript code by **JSLint validation**.
 
 ![JSLint with Warnings](https://raw.githubusercontent.com/pieterkdevilliers/audio-filters/main/docs/images/readme-images/jslint-validation.webp)
 
-These warnings were dealt with in further code updates and refoactoring. 
+These warnings were reduced from 138 to 24 with in further code updates and refoactoring.
 
-![JSLint with No Warnings](https://raw.githubusercontent.com/pieterkdevilliers/audio-filters/main/docs/images/readme-images/jslint-validation.webp)
+![JSLint with No Warnings](https://raw.githubusercontent.com/pieterkdevilliers/audio-filters/main/docs/images/readme-images/jslint-validation-warnings-only.webp)
 
 ## Color Contrast 
 The initial `color: #43bea9;` had Contrast Ratio of 2.28:1 with the white text. This was changed for the darker `color: #226357;` The [Color Contrast Accessibility Validator](https://webaim.org/) was used to test for colour contrast on the project.
